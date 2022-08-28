@@ -7,7 +7,7 @@
  * */
 
 export const pubsub = {
-  events: {},
+  events: {}, // pego nome do evento e realizo a função
   subscribe: function (evName, fn) {
     console.log(
       `PUBSUB: alguém acabou de se inscrever para saber sobre ${evName}`

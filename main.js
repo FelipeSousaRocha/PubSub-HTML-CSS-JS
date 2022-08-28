@@ -13,6 +13,8 @@ document.addEventListener('DOMContentLoaded', () => {
   let main = document.querySelector('main')
   let aside = document.querySelector('aside')
 
+  // renderizar conteudos
+
   // adicionar um módulo de filmes
   movies.render(main)
 
