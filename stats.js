@@ -1,46 +1,28 @@
-import { pubsub } from './pubsub.js';
+import { pubsub } from './pubsub.js'
 
 export const stats = {
   render: container => {
-    let d = document.createElement('div');
-    d.className = 'stats-container';
-    container.appendChild(d);
-    let pm = document.createElement('p');
-    pm.className = 'movie-count';
-    pm.innerHTML = `0 movies in list`;
-    d.appendChild(pm);
-    let pa = document.createElement('p');
-    pa.className = 'actor-count';
-    pa.innerHTML = `0 actors in list`;
-    d.appendChild(pa);
+    let d = document.createElement('div')
+    d.className = 'stats-container'
+    container.appendChild(d)
+    let pm = document.createElement('p')
+    pm.className = 'movie-count'
+    pm.innerHTML = `0 filmes na lista`
+    d.appendChild(pm)
 
-    //build stats for movies
-    pubsub.subscribe('moviesUpdated', stats.moviesUpdated);
-    console.log('STATS: listening for moviesUpdated events');
+    // construir estatísticas para filmes
+    pubsub.subscribe('moviesUpdated', stats.moviesUpdated)
+    console.log('STATUS: ouvindo filmes atualizados')
 
-    //build stats for actors
-    pubsub.subscribe('actorsUpdated', stats.actorsUpdated);
-    console.log('STATS: listening for actorsUpdated events');
-
-    pubsub.subscribe('actorDeleted', stats.actorsUpdated);
-
-    pubsub.subscribe('movieDeleted', stats.moviesUpdated);
+    pubsub.subscribe('movieDeleted', stats.moviesUpdated)
   },
   moviesUpdated: list => {
-    //the list of movies was just published as updated
+    // a lista de filmes acabou de ser publicada como atualizada
     console.log(
-      `STATS: I hear that the movie list now has ${list.length} titles.`
-    );
+      `STATUS: Ouvi dizer que a lista de itens agora tem ${list.length} título(s).`
+    )
     document.querySelector(
       '.movie-count'
-    ).innerText = `${list.length} movies in list`;
-  },
-  actorsUpdated: list => {
-    console.log(
-      `STATS: I hear that the actor list now has ${list.length} names.`
-    );
-    document.querySelector(
-      '.actor-count'
-    ).innerText = `${list.length} actors in list`;
+    ).innerText = `${list.length} filmes na lista`
   }
-};
+}

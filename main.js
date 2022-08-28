@@ -1,31 +1,24 @@
 /**
- * build the interface and decide which modules to display
- * on the web page
+ * construir a interface e decidir quais módulos exibir
+ * na página
  **/
 
-import { movies } from './movies.js';
-import { actors } from './actors.js';
+import { movies } from './movies.js'
 
-import { movieForm } from './movie-form.js';
-import { actorForm } from './actor-form.js';
+import { movieForm } from './movie-form.js'
 
-import { stats } from './stats.js';
+import { stats } from './stats.js'
 
 document.addEventListener('DOMContentLoaded', () => {
-  let main = document.querySelector('main');
-  let aside = document.querySelector('aside');
-  //add a movies module
-  movies.render(main);
+  let main = document.querySelector('main')
+  let aside = document.querySelector('aside')
 
-  //add a form to add movies
-  movieForm.render(aside);
+  // adicionar um módulo de filmes
+  movies.render(main)
 
-  //add a stats module
-  stats.render(aside);
+  // adicionar um formulário para adicionar filmes
+  movieForm.render(aside)
 
-  //add an actors module
-  actors.render(main);
-
-  //add a form to add actors
-  actorForm.render(aside);
-});
+  // adicionar um módulo de estatísticas
+  stats.render(aside)
+})

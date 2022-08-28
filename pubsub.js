@@ -1,33 +1,35 @@
 /**********
  *
- * pubsub.subscribe() on() add() listen()
- * pubsub.unsubscribe() off() remove() unlisten()
- * pubsub.publish() emit() announce()
+ * pubsub.subscribe() on() add() listen() INSCREVER-SE
+ * pubsub.unsubscribe() off() remove() unlisten() DESINSCREVER_SE
+ * pubsub.publish() emit() announce() PUBLICAR
  *
  * */
 
 export const pubsub = {
   events: {},
-  subscribe: function(evName, fn) {
-    console.log(`PUBSUB: someone just subscribed to know about ${evName}`);
-    //add an event with a name as new or to existing list
-    this.events[evName] = this.events[evName] || [];
-    this.events[evName].push(fn);
+  subscribe: function (evName, fn) {
+    console.log(
+      `PUBSUB: alguém acabou de se inscrever para saber sobre ${evName}`
+    )
+    // adicionar um evento com um nome como novo ou à lista existente
+    this.events[evName] = this.events[evName] || []
+    this.events[evName].push(fn)
   },
-  unsubscribe: function(evName, fn) {
-    console.log(`PUBSUB: someone just UNsubscribed from ${evName}`);
-    //remove an event function by name
+  unsubscribe: function (evName, fn) {
+    console.log(`PUBSUB: alguém acabou de cancelar a inscrição ${evName}`)
+    // remover uma função de evento pelo nome
     if (this.events[evName]) {
-      this.events[evName] = this.events[evName].filter(f => f !== fn);
+      this.events[evName] = this.events[evName].filter(f => f !== fn)
     }
   },
-  publish: function(evName, data) {
-    console.log(`PUBSUB: Making an broadcast about ${evName} with ${data}`);
-    //emit|publish|announce the event to anyone who is subscribed
+  publish: function (evName, data) {
+    console.log(`PUBSUB: Fazendo uma transmissão sobre ${evName} com ${data}`)
+    // emit|publish|announce o evento para quem está inscrito
     if (this.events[evName]) {
       this.events[evName].forEach(f => {
-        f(data);
-      });
+        f(data)
+      })
     }
   }
-};
+}
